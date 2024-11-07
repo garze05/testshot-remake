@@ -1,19 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"obj_blueKey",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_blueBox",
+  "eventList":[],
   "managed":true,
-  "name":"obj_blueKey",
+  "name":"obj_blueBox",
   "overriddenProperties":[],
   "parent":{
-    "name":"Collectibles",
-    "path":"folders/Collectibles.yy",
+    "name":"Walls",
+    "path":"folders/Walls.yy",
   },
   "parentObjectId":{
-    "name":"obj_collectParent",
-    "path":"objects/obj_collectParent/obj_collectParent.yy",
+    "name":"obj_solidWall",
+    "path":"objects/obj_solidWall/obj_solidWall.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -33,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_blueKey",
-    "path":"sprites/spr_blueKey/spr_blueKey.yy",
+    "name":"spr_blueBlock",
+    "path":"sprites/spr_blueBlock/spr_blueBlock.yy",
   },
   "spriteMaskId":null,
   "visible":true,

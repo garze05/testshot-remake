@@ -8,6 +8,11 @@ if instance_exists(obj_player)
 
 if collected
 {
+	if instance_exists(objCollected)
+	{
+		instance_destroy(objCollected) // Not final
+	}
+	
 	image_alpha -= 0.1
 	if image_alpha <= 0
 	{

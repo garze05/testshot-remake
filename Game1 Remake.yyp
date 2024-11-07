@@ -34,6 +34,7 @@
   "resources":[
     {"id":{"name":"Pulir","path":"notes/Pulir/Pulir.yy",},},
     {"id":{"name":"obj_bala","path":"objects/obj_bala/obj_bala.yy",},},
+    {"id":{"name":"obj_blueBox","path":"objects/obj_blueBox/obj_blueBox.yy",},},
     {"id":{"name":"obj_blueKey","path":"objects/obj_blueKey/obj_blueKey.yy",},},
     {"id":{"name":"obj_bulletArrow","path":"objects/obj_bulletArrow/obj_bulletArrow.yy",},},
     {"id":{"name":"obj_cam","path":"objects/obj_cam/obj_cam.yy",},},
@@ -57,6 +58,7 @@
     {"id":{"name":"obj_solidWall","path":"objects/obj_solidWall/obj_solidWall.yy",},},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},},
     {"id":{"name":"obj_wallBox","path":"objects/obj_wallBox/obj_wallBox.yy",},},
+    {"id":{"name":"path_updown","path":"paths/path_updown/path_updown.yy",},},
     {"id":{"name":"rm_initialize","path":"rooms/rm_initialize/rm_initialize.yy",},},
     {"id":{"name":"rm_level1","path":"rooms/rm_level1/rm_level1.yy",},},
     {"id":{"name":"rm_level2","path":"rooms/rm_level2/rm_level2.yy",},},
@@ -73,6 +75,7 @@
     {"id":{"name":"spr_arrowFireParticles","path":"sprites/spr_arrowFireParticles/spr_arrowFireParticles.yy",},},
     {"id":{"name":"spr_arrowNormal","path":"sprites/spr_arrowNormal/spr_arrowNormal.yy",},},
     {"id":{"name":"spr_bg0","path":"sprites/spr_bg0/spr_bg0.yy",},},
+    {"id":{"name":"spr_blueBlock","path":"sprites/spr_blueBlock/spr_blueBlock.yy",},},
     {"id":{"name":"spr_blueKey","path":"sprites/spr_blueKey/spr_blueKey.yy",},},
     {"id":{"name":"spr_bowFast","path":"sprites/spr_bowFast/spr_bowFast.yy",},},
     {"id":{"name":"spr_bowNormal","path":"sprites/spr_bowNormal/spr_bowNormal.yy",},},
