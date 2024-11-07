@@ -1,3 +1,0 @@
-Pulir:
-movement camara en general, sobretodo el aimDir
-ai de enemigos para perseguir a player

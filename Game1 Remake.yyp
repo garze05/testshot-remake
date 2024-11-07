@@ -32,7 +32,6 @@
   },
   "name":"Game1 Remake",
   "resources":[
-    {"id":{"name":"Pulir","path":"notes/Pulir/Pulir.yy",},},
     {"id":{"name":"obj_bala","path":"objects/obj_bala/obj_bala.yy",},},
     {"id":{"name":"obj_blueBox","path":"objects/obj_blueBox/obj_blueBox.yy",},},
     {"id":{"name":"obj_blueKey","path":"objects/obj_blueKey/obj_blueKey.yy",},},
