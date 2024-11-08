@@ -9,7 +9,8 @@ shot = mouse_check_button( mb_left )
 swapKey = mouse_wheel_down() or mouse_wheel_up()
 interact = keyboard_check_pressed(ord( "E" ))
 
-if shot && weapon.auto == false { mouse_clear(shot) }
+if shot && weapon.auto == false { mouse_clear(shot) } // !! Esto no sirve en mac, solo se que sirve en Windows
+
 moveSpd = run ? runSpd : wlkSpd; // Alternar velocidad entre caminar y correr
 
 // Movimiento Player
