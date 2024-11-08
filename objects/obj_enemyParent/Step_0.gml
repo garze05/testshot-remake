@@ -1,4 +1,4 @@
-// Recibir daño
+// Take damage
 get_damaged(obj_damageEnemy)
 	
 // Death

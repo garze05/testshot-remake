@@ -1,8 +1,9 @@
-// Mover
+// Get movement components
 
 xspd = lengthdir_x( spd, dir )
 yspd = lengthdir_y( spd, dir )
 
+// Movement
 x += xspd
 y += yspd
 
@@ -12,18 +13,19 @@ y += yspd
 	
 	// Destroy
 	if destroy == true {
-		// Visual de destruccion
+		// Here we will be coding the destruction VFX of any object the destroy, hitConfirm system
 		instance_destroy()
 	}
 	
-	// A diferencia del player, vamos a verificar si colisionamos DESPUES de habernos movido
+	// Unlike the player, we will check if we collide AFTER we have moved
+	// This is why we put the code after the moving bit
 	if place_meeting( x, y, obj_solidWall ) 
 	{ 
 		destroy = true 
 	}
 	
 	// Bullet out of range
-	// xstart y ystart son las posiciones x y y iniciales al crear la instancia en el room
+	// xstart and ystart are the initial x and y positions when creating the instance in the room
 	if point_distance( xstart, ystart, x , y) > maxDist {
 		destroy = true
 	}

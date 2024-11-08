@@ -1,4 +1,4 @@
-// Maquina de estados
+// State machine
 switch ( state )
 {
 	case 0:
@@ -19,11 +19,10 @@ switch ( state )
 	break
 }
 
-// Perseguir al player
-// Pero primero aseguremonos que existimos, y no nos hemos muerto
+// Chasing the player
+// But first let's make sure we exist, and we're not dead
 
-	
-	// Obteniendo las velocidades
+// Getting the speeds
 		xspd = lengthdir_x( spd, dir )
 		yspd = lengthdir_y( spd, dir )
 		
@@ -32,7 +31,7 @@ switch ( state )
 	if xspd > 0 { face = 1 }
 	if xspd < 0 { face = -1 }
 	
-	// Colisiones
+	// Collisions
 		if place_meeting( x + xspd, y, obj_wall) || place_meeting(x + xspd, y, obj_enemyParent){
 			xspd = 0
 		}
@@ -40,12 +39,13 @@ switch ( state )
 			yspd = 0
 		}
 	
-	// Moverse
+	// Movement
 		x += xspd
 		y += yspd
-	// Setear Profundidad
+		
+	// Dynamic depth
 	depth = -y
 
-// Herencia del codigo de todos los enemigos
-	// Getting damage and dying
+// Inheriting code from all enemies
+// Getting damage and dying
 	event_inherited();

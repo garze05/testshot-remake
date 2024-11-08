@@ -1,3 +1,2 @@
-/// @description Clean Up se ejecuta cuando una instancia de este objeto se va del juego
-
+// Clean Up is executed when an instance of this object leaves the game
 get_damaged_cleanup()

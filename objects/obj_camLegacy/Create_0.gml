@@ -1,3 +1,5 @@
+// This is the old camera, i dont want to delete it yet
+
 camWidth = 320;
 camHeight = 180;
 

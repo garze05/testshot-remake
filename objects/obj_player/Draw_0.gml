@@ -1,27 +1,27 @@
-// Dibujar el arma por debajo del player
 
-	// Animacion
-
+// Draw a basic shadow
 draw_shadow()
 
+// Draw weapon behind the player
 if aimDir >= 0 && aimDir < 180 {
 	draw_weapon()
 }
 
-
-
-// Little hack para no cambiar el xscale del sprite directamente, pero solo dibujarlo (para evitar bugs con la collision mask)
+// Little hack to not change the sprite's xscale directly, but just draw it (to avoid bugs with the collision mask)
 var _flip = 1
 if face == 2 { _flip = -1 } else { _flip = 1;}
 draw_sprite_ext( sprite_index, image_index, x, y, _flip, image_yscale, image_angle, image_blend, image_alpha)
 
-// Dibujar el arma encima del player
-if aimDir >= 180 && aimDir < 360 // Si estamos viendo a cualquier direccion que no sea arriba
+// Draw weapon in front of player
+if aimDir >= 180 && aimDir < 360 // If we are looking in any direction other than up
 { 
 	draw_weapon()
 }
 
-// Dibujar HP
-//draw_text(x ,y, string(hp))
+// Draw debug hp
+if global.showDebugInfo {
+	draw_text(x ,y, string(hp))
+}
 
+// By default this draw_mask function will only work with global.showDebugInfo set to true
 draw_mask()

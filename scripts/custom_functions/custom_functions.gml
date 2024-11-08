@@ -1,150 +1,155 @@
 global.trueKey = true
 global.showDebugInfo = false
-// Dibujar Arma Player
+
+// Draw weapon player
 function draw_weapon()
 {
 	
-	// Separar arma del player
-	var _xOffset = lengthdir_x(armOffsetDist, aimDir)
-	var _yOffset = lengthdir_y(armOffsetDist, aimDir)
+	// Separate weapon from player
+		var _xOffset = lengthdir_x(armOffsetDist, aimDir)
+		var _yOffset = lengthdir_y(armOffsetDist, aimDir)
 
-	// Voltear arma
-	var _weaponYscale = 1
-	if aimDir > 90 && aimDir < 270 { _weaponYscale = -1 } // Si estamos viendo a la izquierda
+	// Flip weapon
+		var _weaponYscale = 1
+	// If we are looking to the left
+		if aimDir > 90 && aimDir < 270 { _weaponYscale = -1 } 
 	
 	var frame = isShooting ? weaponImageFrame : 0;
 	draw_sprite_ext( weapon.sprite, frame, x + _xOffset, centerY + _yOffset, 1, _weaponYscale, aimDir, c_white, 1 )
 }
 
-// Calculo de daño
-	// Create event
-	function get_damaged_create( _hp = 1, _iFrames = false)
-	{
-		hp = _hp;
+// Damage calculation
+// Create event
+function get_damaged_create( _hp = 1, _iFrames = false)
+{
+	hp = _hp;
 		
-		if _iFrames == true
-		{
-			iFrameTimer = 0
-			iFrameNumber = 90 // 1 segundo y medio
-		}
-		if _iFrames == false
-		{
-			// Crear la lista de daño
-			damageList = ds_list_create()
-		}
-	}
-	
-	// Cleanup event
-	function get_damaged_cleanup()
+	if _iFrames == true
 	{
-		// No lo necesitamos si estamos usando Frames de Invencibilidad "iFrames == true"
-		// Eliminar la lista de daño para liberar memoria
-		ds_list_destroy(damageList)
+		iFrameTimer = 0
+		iFrameNumber = 90 // 1 second and a half
 	}
-	
-	// Step event
-	function get_damaged( _damageObj, _iFrames = false) 
+	if _iFrames == false
 	{
+		// Create damage list to store what has done damage to us
+		damageList = ds_list_create()
+	}
+}
+	
+// Cleanup event
+function get_damaged_cleanup()
+{
+	// We don't need this if we're using Invincibility Frames "iFrames == true"
+	
+	// Remove the damage list to free up memory
+	ds_list_destroy(damageList)
+}
+	
+// Step event
+function get_damaged( _damageObj, _iFrames = false) 
+{
 		
-		// Special exit for iFrame timer
-		if _iFrames == true && iFrameTimer > 0
+	// Special exit for iFrame timer
+	if _iFrames == true && iFrameTimer > 0
+	{
+		iFrameTimer--
+		if iFrameTimer % 4 == 0
 		{
-			iFrameTimer--
-			if iFrameTimer % 4 == 0
-			{
-				if image_alpha == 1 {
-					image_alpha = 0			
-				} else {
-					image_alpha = 1
-				}
+			if image_alpha == 1 {
+				image_alpha = 0			
+			} else {
+				image_alpha = 1
 			}
-			image_blend = c_red
+		}
+		image_blend = c_red
 			
-			exit // No me ejecute nada de lo de abajo hasta que iFrames sea false y iFrameTimer haya terminado
-		}
-		// Asegurarse de que el estado del player vuelva a la normalidad
-		if _iFrames == true
-		{
-			image_blend = c_white
-			image_alpha = 1
-		}
-		
-		// Recibir daño
-		// Planear las cosas antes de, hacen las cosas
-		// 1000 y una veces + facil como Game Designer
-
-		if place_meeting( x, y, _damageObj ) 
-		{	/*
-					Muy similar a "place_meeting", devuelve true o false, 
-					pero tambien guarda la instancia que colisiono el objeto.
-					En este caso, sabemos la bala o cosa exacta que le hizo daño al enemigo:
-					//var _inst = instance_place( x, y, obj_damageEnemy )
-				*/
-
-				//Getting a list of the damage instances
-					var _instList = ds_list_create()
-				// Pero con esta, guardamos una LISTA de las instancias con las que colisionó.
-					instance_place_list( x, y, _damageObj, _instList, false )
-				// Obtener el tamaño de la lista
-					var _listSize = ds_list_size(_instList)
-		
-				// Ciclar por la lista
-					var _hitConfirm = false
-					for ( var i = 0; i < _listSize; i++) 
-					{
-						/* 
-						Este codigo es para poder hacer balas que atraviesen el enemy,
-						sin tener el problema de que le haga daño cada frame, si no solo 1 vez
-						*/
-				
-						// Obtener un objeto de daño de la lista
-							var _inst = ds_list_find_value( _instList, i)
-						
-						// Verificar si "_inst" YA esta en la lista de daño
-							if _iFrames == true || ds_list_find_index( damageList, _inst ) == -1 // No se encontro? Osea -1?
-							{
-								// Añadir la nueva instancia de daño a la lista de daño
-								if _iFrames == false
-								{
-									ds_list_add( damageList, _inst )
-								}
-						
-								// Take damage de esa instancia en especifico
-									//show_message(_inst)
-									hp -= _inst.damage
-									_hitConfirm = true
-								// Decirle a la instancia de daño que se destruya
-									_inst.hitConfirm = true
-							}
-					}
-					
-					// Setear iFrames si nos hicieron daño
-					if _iFrames == true && _hitConfirm == true
-					{
-						iFrameTimer = iFrameNumber
-					}
-		
-				// Liberar la memoria (IMPORTANTE)
-					ds_list_destroy(_instList)
-			}
-
-		// Limpiar la lista de daño de objetos que no existen ya o no se estan tocando
-			if _iFrames == false 
-			{
-				var _damageListSize = ds_list_size( damageList )
-				for ( var i = 0; i < _damageListSize; i++ ) 
-				{
-					// Si ya no estamos tocando la instancia de daño, eliminela de la lista Y ponga el ciclo atras 1 posicion
-					var _inst = ds_list_find_value( damageList, i )
-					if !instance_exists( _inst ) || !place_meeting( x, y, _inst )
-					{
-						ds_list_delete( damageList, i )
-						i-- // Para no saltarse entradas de la lista de daño si se elimina alguna
-						_damageListSize--
-					}
-				}
-			}
+		exit // I don't execute any of the below until iFrames is false and iFrameTimer has finished
 	}
+	// Ensure that the player's state returns to normal
+	
+	if _iFrames == true // This would need to change, so I can affect the player's image_blend or/and alpha (for black rooms for e.g)
+	{
+		image_blend = c_white 
+		image_alpha = 1
+	}
+		
+	// Take damage // Plan things before, do things // 1000 and one times easier as a Game Designer
+	if place_meeting( x, y, _damageObj )
+	{ 
+		/*
+		Very similar to "place_meeting", it returns true or false,
+		but it also saves the instance that collided with the object.
+		In this case, we know the exact bullet or thing that damaged the enemy:
+			
+		var _inst = instance_place( x, y, obj_damageEnemy )
+		*/
+
+		//Getting a list of the damage instances
+		var _instList = ds_list_create()
+		// But with this one, we save a LIST of the instances that collided with it.
+		instance_place_list( x, y, _damageObj, _instList, false )
+		// Get the size of the list
+		var _listSize = ds_list_size(_instList)
+
+		// Cycle through the list
+		var _hitConfirm = false
+		for ( var i = 0; i < _listSize; i++)
+		{
+			/*
+			This code is to be able to make bullets that go through the enemy,
+			without having the problem of damaging them every frame, but only once
+			*/
+
+			// Get a damage object from the list
+			var _inst = ds_list_find_value( _instList, i)
+
+			// Check if "_inst" is ALREADY in the damage list
+			if _iFrames == true || ds_list_find_index( damageList, _inst ) == -1 // Not found? So -1?
+			{
+				
+			// Add the new damage instance to the damage list
+			if _iFrames == false
+			{
+				ds_list_add( damageList, _inst )
+			}
+
+			// Take damage from that specific instance 				//show_message(_inst)
+				hp -= _inst.damage
+				_hitConfirm = true
+				
+			// Tell the damage instance to destroy itself
+				_inst.hitConfirm = true
+			}
+		}
+
+		// Set iFrames if they did damage to us
+		if _iFrames == true && _hitConfirm == true
+		{
+			iFrameTimer = iFrameNumber
+		}
+
+		// Free up memory (IMPORTANT)
+		ds_list_destroy(_instList)
+	}
+
+	// Clear the damage list of objects that no longer exist or are not being touched
+	if _iFrames == false
+	{
+		var _damageListSize = ds_list_size( damageList )
+		for ( var i = 0; i < _damageListSize; i++ )
+		{
+			// If we are no longer touching the damage instance, remove it from the list AND move the loop back 1 position
+			var _inst = ds_list_find_value( damageList, i )
+			
+			if !instance_exists( _inst ) || !place_meeting( x, y, _inst )
+			{
+				ds_list_delete( damageList, i )
+				i-- // To not skip entries in the damage list if one is deleted
+				_damageListSize--
+			}
+		}
+	}
+}
 
 function draw_mask()
 {

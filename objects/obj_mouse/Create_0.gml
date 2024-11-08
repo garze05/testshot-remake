@@ -3,7 +3,7 @@ depth = -9999999
 invisible_Time = 100;
 invisible_Timer = invisible_Time;
 
-// Quitamos el mouse default del OS
+// We remove the default mouse from the OS
 window_set_cursor(cr_none);
 
 

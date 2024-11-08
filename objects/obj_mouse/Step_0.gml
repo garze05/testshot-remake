@@ -10,6 +10,8 @@ else {
 	image_blend = c_white;
 }
 
+// Make the aimCroshair invicible after a certain time of inactivity
+// Idk if I should keep this
 /*
 if (xprevious == x and !obj_player.shot) {
 	invisible_Timer--;

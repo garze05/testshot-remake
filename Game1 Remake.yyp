@@ -32,9 +32,9 @@
   },
   "name":"Game1 Remake",
   "resources":[
-    {"id":{"name":"obj_bala","path":"objects/obj_bala/obj_bala.yy",},},
     {"id":{"name":"obj_blueBox","path":"objects/obj_blueBox/obj_blueBox.yy",},},
     {"id":{"name":"obj_blueKey","path":"objects/obj_blueKey/obj_blueKey.yy",},},
+    {"id":{"name":"obj_bullet","path":"objects/obj_bullet/obj_bullet.yy",},},
     {"id":{"name":"obj_bulletArrow","path":"objects/obj_bulletArrow/obj_bulletArrow.yy",},},
     {"id":{"name":"obj_cam","path":"objects/obj_cam/obj_cam.yy",},},
     {"id":{"name":"obj_camLegacy","path":"objects/obj_camLegacy/obj_camLegacy.yy",},},

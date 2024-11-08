@@ -1,5 +1,4 @@
-// constructor plantilla para las armas
-
+// template constructor for weapons
 function create_weapon( _sprite, _weaponLenght, _bulletObj, _cooldown, _automatic = false) constructor
 {
 	sprite = _sprite;
@@ -9,10 +8,10 @@ function create_weapon( _sprite, _weaponLenght, _bulletObj, _cooldown, _automati
 	auto = _automatic;
 }
 
-// Inventario de las armas del player
+// Player's weapons inventory
 global.PlayerWeapons = array_create(0)
 
-// Lista de armas
+// Weapons list
 global.Weapons = {
 	normalBow : new create_weapon(
 		spr_bowNormal, 

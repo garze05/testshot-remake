@@ -9,29 +9,31 @@ shot = mouse_check_button( mb_left )
 swapKey = mouse_wheel_down() or mouse_wheel_up()
 interact = keyboard_check_pressed(ord( "E" ))
 
-if shot && weapon.auto == false { mouse_clear(shot) } // !! Esto no sirve en mac, solo se que sirve en Windows
+// Hack to make weapons 1 bullet click
+if shot && weapon.auto == false { mouse_clear(shot) } // !! This does not work on mac for some reason
 
-moveSpd = run ? runSpd : wlkSpd; // Alternar velocidad entre caminar y correr
+moveSpd = run ? runSpd : wlkSpd; // Alternate between running and walking spds
 
-// Movimiento Player
+// Player Movement
 #region
-	// Obtener direccion
+	// Get direction for the moving player
 	var _xaxis =  right - left
 	var _yaxis = down - up
 	moveDir = point_direction(0, 0, _xaxis, _yaxis)
 	
 	var _spd = 0
 	
+	// Get general input direction (E.g. right = 1, left = -1)
 	var _axis = point_distance(0, 0, _xaxis, _yaxis)
-	_axis = clamp (_axis, 0, 1) // Normalizar, evitar ir mas rapido en diagonales
-	_spd = moveSpd * _axis
 	
-	// Obtener las velocidades de x y y (para solo movernos cuando presionamos las teclas)
-	// Ej. Si presiono arriba, mi direccion es 90 grados (osea -1 en el axis y) y mi spd es -1, ya sabemos que nuestra velocidad y es -1
+	_axis = clamp (_axis, 0, 1) // Normalizing, we dont wanna go faster in diagonals
+	_spd = moveSpd * _axis 	// Get the general speed
+	
+	// Get the x and y velocities (to only move when we press the keys)
 	xspd = lengthdir_x(_spd, moveDir)
 	yspd = lengthdir_y(_spd, moveDir)
 	
-	// place_meeting es una prediccion, si yo le añadiera a mi x/y la velocidad en este momento, estoy colisionando contra obj_wall?
+	// place_meeting is a prediction, if I added my x/y velocity right now, am I colliding with obj_wall?
 	if place_meeting(x + xspd, y, obj_wall){
 		xspd = 0
 	}
@@ -39,19 +41,21 @@ moveSpd = run ? runSpd : wlkSpd; // Alternar velocidad entre caminar y correr
 		yspd = 0
 	}
 	
-	// Si nos estamos moviendo
-	if xspd != 0 or yspd != 0 {
-		estado = "walk"
-	} else { estado = "idle" }
+	// State machines for animations
+		// If we are getting any input on the keyboard for movement
+		if xspd != 0 or yspd != 0 {
+			state = "walk"
+		} else { state = "idle" }
 	
-	// Mover jugador
+	// Move player
 	x += xspd
 	y += yspd
-	// Profundidad de dibujado
-	depth = -bbox_bottom; // Entre mas abajo, mas cerca de la camara, y viceversa
+	
+	// Dynamic draw depth
+	depth = -bbox_bottom; // The lower, the closer to the camera, and vice versa
 #endregion
 
-// Tomar daño
+// Take damage
 get_damaged( obj_damagePlayer, true )
 
 // Sprite Control
@@ -60,13 +64,13 @@ get_damaged( obj_damagePlayer, true )
 		centerY = y + centerYOffset
 		aimDir = point_direction(x, centerY, mouse_x, mouse_y)
 	
-	// Asegurarse que el player este viendo a la direccion correcta
-		face = round( aimDir / 90 ) // Entre 90 porque estamos usando 4 direcciones rectas, si fueran 8 seria entre 45
+	// Making sure the player is facing the right direction
+		face = round( aimDir / 90 ) // Dividing by 90 because we are using 4 straight directions, if there were 8 it would be between 45
 		if face == 4 { face = 0 }
-	// Setear estados
-		// Control de animación del arma
+	// States setup for weapon animations
 		if isShooting {
-		    weaponImageFrame += 0.5; // Ajusta la velocidad de la animación si es necesario
+			var _weaponAnimSpd = 0.5
+		    weaponImageFrame += _weaponAnimSpd; // Adjust the speed of the animation if necessary
 		    if weaponImageFrame >= sprite_get_number( weapon.sprite ) {
 		        weaponImageFrame = 0;
 				isShooting = false
@@ -75,56 +79,58 @@ get_damaged( obj_damagePlayer, true )
 	
 	var _spriteToUse = sprite_index
 	
-	// Setear Sprite final, animaciones con el estado
-	if estado == "idle" {
+	// Final sprite setup, controlled by "state"
+	if state == "idle" {
 		_spriteToUse = spriteIdle
 	} else {
 		_spriteToUse = spriteWalk
 	}
+	
 	image_speed = moveSpd
 	sprite_index = _spriteToUse[face]
 #endregion
 
 // Weapon Swapping
 #region
-var _playerWeapons = global.PlayerWeapons // Hacemos una variable local de la global pq es mas eficiente para GameMaker trabajar con variables locales
+var _playerWeapons = global.PlayerWeapons // We make a local variable out of the global one because it is more efficient for GameMaker to work with local variables
 	// Cycle through weapons
 	if swapKey
 	{
-		// Cambiar la seleccion y ciclar(Importante)
+		// Change the selection and cycle (Important)
 		selectedWeapon++
 		if selectedWeapon >= array_length(_playerWeapons) { selectedWeapon = 0 }
 		
-		// Setear nueva arma
+		// Setup new weapon
 		weapon = _playerWeapons[selectedWeapon]
 	}
 #endregion
 
-// Disparar Arma
+// Shooting Weapon
 #region
-	// Si estamos en media transicion no podemos disparar
+	// If we are in mid-transition between rooms we cannot shoot
+	// This will probably be changed, is a little annoying
 	if !global.midTransition
 	{
 		if shootTimer > 0 { shootTimer -- }
 
 		if shot && shootTimer <= 0 && !isShooting
 		{
-			weaponImageFrame = 0 // Reinicia el cuadro de la animación
+			weaponImageFrame = 0 // Reset the animation frame
 			isShooting = true
 		
-			// Reiniciar Timer
+			// Restart Timer
 			shootTimer = weapon.cooldown
 			var _xOffset = lengthdir_x( weapon.length + armOffsetDist, aimDir )
 			var _yOffset = lengthdir_y( weapon.length + armOffsetDist, aimDir )
 		
 			// Actual shooting
-				// Creando la bala
+				// Creating the bullet
 				var _bulletInstance = instance_create_depth( x + _xOffset , centerY + _yOffset, depth+100, weapon.bulletObj)
 		
-				// Cambiar direccion de la bala
-				with (_bulletInstance) // Con "with" vamos dentro de la instancia, este codigo se escribe como si fueramos la bala
+				// Chnange bullet direction
+				with (_bulletInstance) // With "with" we go inside the instance, this code is written as if we were the bullet
 				{ 
-					dir = other.aimDir //"other" salimos de la instancia actual de "with" y volvemos a la original, en este caso player
+					dir = other.aimDir //"other" means we leave the current instance of "with" and return to the original, in this case obj_player
 			
 				}
 		}

@@ -1,16 +1,16 @@
 global.midTransition = false
 global.roomTarget = -1
 
-// Crea la secuencia en la room
+// Create the sequence in the room
 function TransitionPlaceSequence( _type )
 {
 	if layer_exists( "transition" ) { layer_destroy( "transition" ) }
-	var _layer = layer_create(-16000, "transition") // -16000 es la depth maxima para arriba
+	var _layer = layer_create(-16000, "transition") // -16000 is the maximum depth up
 	var _seq = layer_sequence_create(_layer, 0, 0, _type)
-	layer_sequence_speedscale(_seq, 4) // Para que no dure una eternidad
+	layer_sequence_speedscale(_seq, 4) // So that this doesn't last forever
 }
 
-// Se llama cuando se quiere transicionar de una room a otra, usando secuencias de in/out
+// Called when you want to transition from one room to another, using in/out sequences
 function TransitionStart( _roomTarget, _typeOut, _typeIn )
 {
 	if !global.midTransition
@@ -26,13 +26,13 @@ function TransitionStart( _roomTarget, _typeOut, _typeIn )
 	else return false
 }
 
-// Se llama en un momento al final de la secuencia de transicion "Out"
+// Called at a moment at the end of the "Out" transition sequence
 function TransitionChangeRoom()
 {
 	room_goto( global.roomTarget )
 }	
 
-// Se llama al momento al final de la secuencia de transicion "In"
+// Called at the moment at the end of the "In" transition sequence
 function TransitionFinished()
 {
 	layer_sequence_destroy( self.elementID )

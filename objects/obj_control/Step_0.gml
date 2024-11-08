@@ -19,7 +19,7 @@ if keyboard_check_pressed( vk_tab )
 	show_debug_overlay(global.showDebugInfo)
 }
 
-// Para probar niveles
+// To test levels
 if global.showDebugInfo
 {
 	if keyboard_check_pressed( vk_enter )
@@ -31,11 +31,4 @@ if global.showDebugInfo
 	}
 }
 
-
-
-// Solucionar bug de foco y input
-/*
-if (!window_has_focus()) {
-    // Si la ventana no tiene el foco, reseteamos el estado de los inputs
-	io_clear()
-}
+// TODO: Install Extension to fix drag window, ghost input bug

@@ -1,9 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"obj_bala",
+  "%Name":"obj_bullet",
   "eventList":[],
   "managed":true,
-  "name":"obj_bala",
+  "name":"obj_bullet",
   "overriddenProperties":[],
   "parent":{
     "name":"Weapons",
