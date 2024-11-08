@@ -13,7 +13,7 @@ y += yspd
 	
 	// Destroy
 	if destroy == true {
-		// Here we will be coding the destruction VFX of any object the destroy, hitConfirm system
+		// Here we would be coding the destruction VFX of any object that use the destroy, hitConfirm system
 		instance_destroy()
 	}
 	
