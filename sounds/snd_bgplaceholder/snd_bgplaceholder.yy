@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":149.47266,
+  "duration":103.00952,
   "name":"snd_bgplaceholder",
   "parent":{
     "name":"Game1 Remake",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"snd_bgplaceholder.mp3",
+  "soundFile":"snd_bgplaceholder.wav",
   "type":0,
   "volume":1.0,
 }

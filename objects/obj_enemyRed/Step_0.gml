@@ -16,6 +16,9 @@ switch ( state )
 		}
 		
 		spd = 0
+		
+		// Stop animating, manually setting the image_index
+		image_index = 0
 	break
 }
 
@@ -28,8 +31,14 @@ switch ( state )
 		
 		
 	// Get the correct face
-	if xspd > 0 { face = 1 }
-	if xspd < 0 { face = -1 }
+		if dir > 90 && dir < 270
+		{
+			face = -1
+		}
+		else
+		{
+			face = 1
+		}
 	
 	// Collisions
 		if place_meeting( x + xspd, y, obj_wall) || place_meeting(x + xspd, y, obj_enemyParent){

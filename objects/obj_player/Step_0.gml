@@ -127,7 +127,7 @@ var _playerWeapons = global.PlayerWeapons // We make a local variable out of the
 				// Creating the bullet
 				var _bulletInstance = instance_create_depth( x + _xOffset , centerY + _yOffset, depth+100, weapon.bulletObj)
 		
-				// Chnange bullet direction
+				// Change bullet direction
 				with (_bulletInstance) // With "with" we go inside the instance, this code is written as if we were the bullet
 				{ 
 					dir = other.aimDir //"other" means we leave the current instance of "with" and return to the original, in this case obj_player

@@ -13,7 +13,7 @@ y += yspd
 	
 	// Destroy
 	if destroy == true {
-		// Here we would be coding the destruction VFX of any object that use the destroy, hitConfirm system
+		// Here we will code the destruction VFX of any object that uses the destroy and hitConfirm system
 		instance_destroy()
 	}
 	
@@ -29,5 +29,6 @@ y += yspd
 	if point_distance( xstart, ystart, x , y) > maxDist {
 		destroy = true
 	}
-	
+
+// Final image_yscale setup
 image_yscale = dir > 90 && dir < 270 ? -1 : 1 
