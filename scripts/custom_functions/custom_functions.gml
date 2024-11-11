@@ -22,6 +22,7 @@ function draw_weapon()
 // Create event
 function get_damaged_create( _hp = 1, _iFrames = false)
 {
+	maxHp = _hp
 	hp = _hp;
 		
 	if _iFrames == true
@@ -62,7 +63,10 @@ function get_damaged( _damageObj, _iFrames = false)
 			}
 		}
 		image_blend = c_red
-			
+		
+		// clamp hp
+		hp = clamp(hp, 0, maxHp)
+		
 		exit // I don't execute any of the below until iFrames is false and iFrameTimer has finished
 	}
 	// Ensure that the player's state returns to normal
@@ -149,6 +153,9 @@ function get_damaged( _damageObj, _iFrames = false)
 			}
 		}
 	}
+	
+	// clamp hp
+	hp = clamp(hp, 0, maxHp)
 }
 
 function draw_mask()

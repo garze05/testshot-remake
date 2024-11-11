@@ -1,2 +1,2 @@
-hp = 1
+hp = 3
 get_damaged_create( hp )

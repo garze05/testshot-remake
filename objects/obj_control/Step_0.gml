@@ -31,4 +31,5 @@ if global.showDebugInfo
 	}
 }
 
+
 // TODO: Install Extension to fix drag window, ghost input bug

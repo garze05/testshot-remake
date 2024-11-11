@@ -27,7 +27,7 @@ if (instance_exists(obj_player)) {
         _targetX += lengthdir_x(len, _offsetDir);
         _targetY += lengthdir_y(len, _offsetDir);
     }
-}
+
 
 // Optional, so that the camera does not go outside the width and height of the room
 _targetX = clamp(_targetX, 0, room_width - _camW);
@@ -42,3 +42,4 @@ _camY = lerp(_camY, _targetY, _camSmooth);
 
 // Set the final camera position
 camera_set_view_pos(view_camera[0], _camX, _camY);
+}

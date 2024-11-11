@@ -136,3 +136,10 @@ var _playerWeapons = global.PlayerWeapons // We make a local variable out of the
 		}
 	}
 #endregion
+
+// death / game over
+if hp <= 0
+{
+	TransitionPlaceSequence(sq_gameOver, 1, true)
+	instance_destroy()
+}

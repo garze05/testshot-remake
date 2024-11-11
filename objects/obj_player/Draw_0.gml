@@ -25,3 +25,8 @@ if global.showDebugInfo {
 
 // By default this draw_mask function will only work with global.showDebugInfo set to true
 draw_mask()
+
+draw_set_font(fnt_8bit)
+draw_set_halign(fa_center)
+draw_set_valign(fa_middle)
+draw_text_transformed(x, y-sprite_height - 4, global.name, 0.4, 0.4, 0)
