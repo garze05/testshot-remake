@@ -1,5 +1,5 @@
-x = mouse_x;
-y = mouse_y;
+x = input_cursor_x();
+y = input_cursor_y();
 
 //defualt check
 

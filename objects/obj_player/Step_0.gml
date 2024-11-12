@@ -1,13 +1,13 @@
-// Get Input
-left = keyboard_check(ord( "A" ))
-right = keyboard_check(ord( "D" ))
-up = keyboard_check(ord( "W" ))
-down = keyboard_check(ord( "S" ))
+// Get Input (Now we are using Inpu 8.0)
+left = input_check("left")
+right = input_check("right")
+up = input_check("up")
+down = input_check("down")
 	
-run = keyboard_check( vk_shift )
-shot = mouse_check_button( mb_left )
-swapKey = mouse_wheel_down() or mouse_wheel_up()
-interact = keyboard_check_pressed(ord( "E" ))
+run = input_check("run")
+shot = input_check("shoot")
+swapKey = input_check_pressed("swap")
+interact = input_check_pressed("action")
 
 // Hack to make weapons 1 bullet click
 if shot && weapon.auto == false { mouse_clear(shot) } // !! This does not work on mac for some reason
@@ -62,7 +62,9 @@ get_damaged( obj_damagePlayer, true )
 #region	
 	// Player Aiming
 		centerY = y + centerYOffset
-		aimDir = point_direction(x, centerY, mouse_x, mouse_y)
+		//aimDir = point_direction(x, centerY, mouse_x, mouse_y)
+			input_cursor_speed_set(3) // Would be part of the config
+		aimDir = point_direction(x, centerY, input_cursor_x(), input_cursor_y())
 	
 	// Making sure the player is facing the right direction
 		face = round( aimDir / 90 ) // Dividing by 90 because we are using 4 straight directions, if there were 8 it would be between 45
