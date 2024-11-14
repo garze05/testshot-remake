@@ -1,16 +1,13 @@
 {
   "$GMObject":"",
   "%Name":"obj_hud",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":64,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"obj_hud",
   "overriddenProperties":[],
   "parent":{
-    "name":"Setup Objects",
-    "path":"folders/Setup Objects.yy",
+    "name":"Control Objects",
+    "path":"folders/Control Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

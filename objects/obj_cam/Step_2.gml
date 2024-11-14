@@ -1,8 +1,8 @@
 // @description We use End Step because it's the same frame after the player has already moved and the game is rendering it
 
 // Get the width and height of the camera
-var _camW = camera_get_view_width(view_camera[0]);
-var _camH = camera_get_view_height(view_camera[0]);
+var _camW = camera_get_view_width(global.camera);
+var _camH = camera_get_view_height(global.camera);
 var _camSmooth = 0.1; // Smoothing value for the cam motion
 
 // Where our camera should point
@@ -33,13 +33,13 @@ if (instance_exists(obj_player)) {
 _targetX = clamp(_targetX, 0, room_width - _camW);
 _targetY = clamp(_targetY, 0, room_height - _camH);
 
-var _camX = camera_get_view_x(view_camera[0]);
-var _camY = camera_get_view_y(view_camera[0]);
+var _camX = camera_get_view_x(global.camera);
+var _camY = camera_get_view_y(global.camera);
 
 // Final setting of the cam movement
 _camX = lerp(_camX, _targetX, _camSmooth);
 _camY = lerp(_camY, _targetY, _camSmooth);
 
 // Set the final camera position
-camera_set_view_pos(view_camera[0], _camX, _camY);
+camera_set_view_pos(global.camera, _camX, _camY);
 }

@@ -1,13 +1,12 @@
-// Get Input (Now we are using Inpu 8.0)
-left = input_check("left")
-right = input_check("right")
-up = input_check("up")
-down = input_check("down")
-	
-run = input_check("run")
-shot = input_check("shoot")
-swapKey = input_check_pressed("swap")
-interact = input_check_pressed("action")
+// Get inputs
+right = global.rightKey
+left = global.leftKey
+up = global.upKey
+down = global.downKey
+shot = global.shootKey
+run = global.runKey
+swapKey = global.swapGunKey
+interact = global.interact
 
 // Hack to make weapons 1 bullet click
 if shot && weapon.auto == false { mouse_clear(shot) } // !! This does not work on mac for some reason
@@ -142,6 +141,8 @@ var _playerWeapons = global.PlayerWeapons // We make a local variable out of the
 // death / game over
 if hp <= 0
 {
-	TransitionPlaceSequence(sq_gameOver, 1, true)
+	// Communicate with our obj_control
+	global.gameOver = true
+	// Destroy our player object
 	instance_destroy()
 }

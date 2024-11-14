@@ -10,8 +10,8 @@
   "name":"obj_camLegacy",
   "overriddenProperties":[],
   "parent":{
-    "name":"Setup Objects",
-    "path":"folders/Setup Objects.yy",
+    "name":"Control Objects",
+    "path":"folders/Control Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -26,7 +26,7 @@
   "origin":3,
   "parent":{
     "name":"Collectibles",
-    "path":"folders/Collectibles.yy",
+    "path":"folders/Objects/Collectibles.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
