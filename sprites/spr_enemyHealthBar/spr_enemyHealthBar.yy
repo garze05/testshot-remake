@@ -39,8 +39,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"Game1 Remake",
-    "path":"Game1 Remake.yyp",
+    "name":"[Sprites]",
+    "path":"folders/Enemies/[Sprites].yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

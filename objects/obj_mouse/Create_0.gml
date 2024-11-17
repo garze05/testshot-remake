@@ -1,4 +1,5 @@
-depth = -9999999
+depth = -14000
+image_speed = 0
 
 invisible_Time = 100;
 invisible_Timer = invisible_Time;

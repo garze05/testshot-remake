@@ -1,6 +1,6 @@
-enum LOCALE { EN, ES, DE }
+enum LOCALE { EN, ES, PT, DE }
 
-global.locale = LOCALE.ES
+global.locale = LOCALE.EN
 InitTranslations()
 
 function InitTranslations()

@@ -18,6 +18,7 @@ function draw_weapon()
 	draw_sprite_ext( weapon.sprite, frame, x + _xOffset, centerY + _yOffset, 1, _weaponYscale, aimDir, c_white, 1 )
 }
 
+
 // Damage calculation
 // Create event
 function get_damaged_create( _hp = 1, _iFrames = false)
@@ -61,6 +62,7 @@ function get_damaged( _damageObj, _iFrames = false)
 			} else {
 				image_alpha = 1
 			}
+			obj_hud.hudAlpha = image_alpha
 		}
 		image_blend = c_red
 		
@@ -75,6 +77,7 @@ function get_damaged( _damageObj, _iFrames = false)
 	{
 		image_blend = c_white 
 		image_alpha = 1
+		obj_hud.hudAlpha = 1
 	}
 		
 	// Take damage // Plan things before, do things // 1000 and one times easier as a Game Designer
@@ -110,19 +113,19 @@ function get_damaged( _damageObj, _iFrames = false)
 			// Check if "_inst" is ALREADY in the damage list
 			if _iFrames == true || ds_list_find_index( damageList, _inst ) == -1 // Not found? So -1?
 			{
-				
-			// Add the new damage instance to the damage list
-			if _iFrames == false
-			{
-				ds_list_add( damageList, _inst )
-			}
+				// Add the new damage instance to the damage list
+				if _iFrames == false
+				{
+					ds_list_add( damageList, _inst )
+				}
 
-			// Take damage from that specific instance 				//show_message(_inst)
-				hp -= _inst.damage
-				_hitConfirm = true
+				// Take damage from that specific instance 				
+					hp -= _inst.damage
+					_hitConfirm = true
+					//show_message(_inst)
 				
-			// Tell the damage instance to destroy itself
-				_inst.hitConfirm = true
+				// Tell the damage instance to destroy itself
+					_inst.hitConfirm = true
 			}
 		}
 

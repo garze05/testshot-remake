@@ -11,7 +11,7 @@ if global.gameOver && global.isPlaying
 	
 	// Save the localized texts in variables. Between () we use the key reference to the localized text
 	var _youDiedText = Text("default_gameover_title");
-    var _pressShootToContinueText = Text("default_gameover_presstocontinue");
+	var _pressShootToContinueText = Text("default_gameover_presstocontinue");
 
 	for (var i = 0; i < array_length(_tracks); i++)
 	{
@@ -24,21 +24,17 @@ if global.gameOver && global.isPlaying
 		}
 	}
 	TransitionPlaceSequence(transitionGameOver, 1, true)
-	
 	global.isPlaying = false
 }
 else if global.gameOver
 {
-    var _seq = sequence_get(transitionGameOver);
-	if gameOverSequenceEnded
+	var _shootKey = global.shootKey
+	if gameOverSequenceEnded && _shootKey
 	{
-		if global.shootKey
-		{
-			global.gameOver = false
-			gameOverSequenceEnded = false
-			global.isPlaying = true
-			room_restart()
-		}
+		global.gameOver = false
+		gameOverSequenceEnded = false
+		global.isPlaying = true
+		room_restart()
 	}
 }
 

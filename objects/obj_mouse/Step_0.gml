@@ -1,3 +1,4 @@
+var _isPlaying = global.isPlaying
 x = input_cursor_x();
 y = input_cursor_y();
 

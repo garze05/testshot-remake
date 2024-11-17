@@ -469,6 +469,7 @@
     {"id":{"name":"spr_enemyHealthBar","path":"sprites/spr_enemyHealthBar/spr_enemyHealthBar.yy",},},
     {"id":{"name":"spr_enemyRed","path":"sprites/spr_enemyRed/spr_enemyRed.yy",},},
     {"id":{"name":"spr_greenKey","path":"sprites/spr_greenKey/spr_greenKey.yy",},},
+    {"id":{"name":"spr_healthbar","path":"sprites/spr_healthbar/spr_healthbar.yy",},},
     {"id":{"name":"spr_pixel","path":"sprites/spr_pixel/spr_pixel.yy",},},
     {"id":{"name":"spr_playerDie","path":"sprites/spr_playerDie/spr_playerDie.yy",},},
     {"id":{"name":"spr_playerDownIdle","path":"sprites/spr_playerDownIdle/spr_playerDownIdle.yy",},},
