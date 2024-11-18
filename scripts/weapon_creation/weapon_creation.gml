@@ -1,4 +1,10 @@
 // template constructor for weapons
+/// @desc Weapon Creation struct
+/// @param {Asset.GMSprite} _sprite Sprite for the weapon
+/// @param {Real} _weaponLenght Where this weapon would shoot its bullets from. Offset in pixels
+/// @param {Asset.GMObject} _bulletObj Which object would be used for the bullets of this weapon
+/// @param {Real} _cooldown How much time in frames until this weapon can shoot again
+/// @param {bool} [_automatic]=false Controls wherever this weapon shoot is automatic or single bullet
 function create_weapon( _sprite, _weaponLenght, _bulletObj, _cooldown, _automatic = false) constructor
 {
 	sprite = _sprite;

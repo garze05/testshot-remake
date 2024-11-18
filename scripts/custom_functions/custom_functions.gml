@@ -1,6 +1,3 @@
-global.trueKey = true
-global.showDebugInfo = false
-
 // Draw weapon player
 function draw_weapon()
 {
@@ -18,9 +15,10 @@ function draw_weapon()
 	draw_sprite_ext( weapon.sprite, frame, x + _xOffset, centerY + _yOffset, 1, _weaponYscale, aimDir, c_white, 1 )
 }
 
-
 // Damage calculation
-// Create event
+/// @desc Damage calculation create event
+/// @param {real} [_hp]=1 The initial hp of this object
+/// @param {bool} [_iFrames]=false Whatever this object uses invencibility frames for a classic damage effect
 function get_damaged_create( _hp = 1, _iFrames = false)
 {
 	maxHp = _hp
@@ -38,7 +36,8 @@ function get_damaged_create( _hp = 1, _iFrames = false)
 	}
 }
 	
-// Cleanup event
+// CleanUp Damage Event
+/// @desc Cleans the ds list of the damage that this object has received
 function get_damaged_cleanup()
 {
 	// We don't need this if we're using Invincibility Frames "iFrames == true"
@@ -46,8 +45,11 @@ function get_damaged_cleanup()
 	// Remove the damage list to free up memory
 	ds_list_destroy(damageList)
 }
-	
-// Step event
+
+// Step Damage event
+/// @desc Calculates the damage that this object should receive how it handles visuals
+/// @param {Asset.GMObject} _damageObj What object does damage to this object. Normally a parent
+/// @param {bool} [_iFrames]=false Whatever this object uses Invencibility Frames when damage is received
 function get_damaged( _damageObj, _iFrames = false) 
 {
 		
@@ -161,13 +163,33 @@ function get_damaged( _damageObj, _iFrames = false)
 	hp = clamp(hp, 0, maxHp)
 }
 
+/// @desc Draw the hitbox or mask of any object this script is placed in a Draw event when Show Debug Info is enabled
 function draw_mask()
 {
 	if global.showDebugInfo { draw_rectangle_color(bbox_left,bbox_top,bbox_right-1,bbox_bottom-1,c_red,c_red,c_red,c_red,true) }
 }
 
+/// @desc Draws a shadow bellow any object, if its sprite has the origin to the bottom middle. Uses @spr_shadow
 function draw_shadow()
 {
 	draw_sprite_ext(spr_shadow, 0, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha)
 	
+}
+
+function draw_center()
+{
+    draw_set_halign(fa_center)
+    draw_set_valign(fa_middle)
+}
+
+function draw_left()
+{
+    draw_set_halign(fa_left)
+    draw_set_valign(fa_middle)
+}
+
+function draw_right()
+{
+    draw_set_halign(fa_right)
+    draw_set_valign(fa_middle)
 }

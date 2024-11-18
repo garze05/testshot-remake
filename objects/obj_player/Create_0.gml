@@ -53,6 +53,4 @@
 	selectedWeapon = 0
 	weapon = global.PlayerWeapons[selectedWeapon]
 	
-// TEMPORAL
-global.name = "Player"
-	
+playerName = global.name

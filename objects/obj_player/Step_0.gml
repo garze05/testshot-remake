@@ -13,8 +13,7 @@ if shot && weapon.auto == false { mouse_clear(shot) } // !! This does not work o
 
 moveSpd = run ? runSpd : wlkSpd; // Alternate between running and walking spds
 
-// Player Movement
-#region
+#region Player Movement
 	// Get direction for the moving player
 	var _xaxis =  right - left
 	var _yaxis = down - up
@@ -33,10 +32,12 @@ moveSpd = run ? runSpd : wlkSpd; // Alternate between running and walking spds
 	yspd = lengthdir_y(_spd, moveDir)
 	
 	// place_meeting is a prediction, if I added my x/y velocity right now, am I colliding with obj_wall?
-	if place_meeting(x + xspd, y, obj_wall){
+	if place_meeting(x + xspd, y, obj_wall)
+    {
 		xspd = 0
 	}
-	if place_meeting(x, y + yspd, obj_wall) {
+	if place_meeting(x, y + yspd, obj_wall) 
+    {
 		yspd = 0
 	}
 	
@@ -57,8 +58,7 @@ moveSpd = run ? runSpd : wlkSpd; // Alternate between running and walking spds
 // Take damage
 get_damaged( obj_damagePlayer, true )
 
-// Sprite Control
-#region	
+#region	Sprite Control
 	// Player Aiming
 		centerY = y + centerYOffset
 		//aimDir = point_direction(x, centerY, mouse_x, mouse_y)
@@ -91,8 +91,7 @@ get_damaged( obj_damagePlayer, true )
 	sprite_index = _spriteToUse[face]
 #endregion
 
-// Weapon Swapping
-#region
+#region Weapon Swapping
 var _playerWeapons = global.PlayerWeapons // We make a local variable out of the global one because it is more efficient for GameMaker to work with local variables
 	// Cycle through weapons
 	if swapKey
@@ -106,8 +105,7 @@ var _playerWeapons = global.PlayerWeapons // We make a local variable out of the
 	}
 #endregion
 
-// Shooting Weapon
-#region
+#region Shooting Weapon
 	// If we are in mid-transition between rooms we cannot shoot
 	// This will probably be changed, is a little annoying
 	if !global.midTransition
