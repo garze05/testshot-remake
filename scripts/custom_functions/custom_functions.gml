@@ -64,22 +64,34 @@ function get_damaged( _damageObj, _iFrames = false)
 			} else {
 				image_alpha = 1
 			}
-			obj_hud.hudAlpha = image_alpha
+            
+            // This code is to make the hud have the same effect, but only for my player and to update if my player is hurted
+            if _damageObj == obj_damagePlayer
+            {
+                if instance_exists(obj_player) && instance_exists(obj_hud)
+                {
+                    obj_hud.hudAlpha = image_alpha 
+                    obj_player.hurt = true
+                }
+            }
 		}
 		image_blend = c_red
 		
 		// clamp hp
 		hp = clamp(hp, 0, maxHp)
-		
-		exit // I don't execute any of the below until iFrames is false and iFrameTimer has finished
+		exit // I don't execute any of the below until iFrameTimer has finished
 	}
+    
 	// Ensure that the player's state returns to normal
-	
 	if _iFrames == true // This would need to change, so I can affect the player's image_blend or/and alpha (for black rooms for e.g)
 	{
 		image_blend = c_white 
 		image_alpha = 1
 		obj_hud.hudAlpha = 1
+        if instance_exists(obj_player)
+        {
+            obj_player.hurt = false
+        }
 	}
 		
 	// Take damage // Plan things before, do things // 1000 and one times easier as a Game Designer

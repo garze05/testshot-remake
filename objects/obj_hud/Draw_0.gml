@@ -11,31 +11,60 @@ var _LeftX = _camX + _border
 var _RightX = _camX + _camW - _border
 var _TopY = _camY + _border
 var _BottomY = _camY + _camH - _border
+var _middleX = _camX + _camW/2
+var _middleY = _camY + _camH/2
 
-// Draw HUD info
+var _healthInfoText = string(playerHp) + "/" + string(playerMaxHp)
+var _playerName = global.name
+// string_digits returns only digits contained in a string
+var _level = Text("default_level_names") + "[c_yellow] " +  string_digits(room_get_name(room))
+// This would change because we are going to add enemies that arent counted on the level
+var _enemiesLeft = Text("default_enemies_left") + ": [c_yellow]" + string(instance_number(obj_enemyParent))
+
+// Player Related HUD Items
+if instance_exists(obj_player)
+{
+    // When player gets hit (there needs to be other way using the get_damage() function somehow, like with hitConfirm
+    if obj_player.hurt
+    {
+        _healthInfoText = "[shake][scale,0.8][c_red]"+_healthInfoText
+        _playerName = "[shake][c_red]"+_playerName
+        draw_text_scribble(obj_player.x,obj_player.centerY,"[scale,1][fa_middle][fa_center]" + _healthInfoText)
+    }
+    
+    // Player stamina bar
+    if (obj_player.runTimer >= obj_player.runNum)
+    {
+        staminaBarAlpha-=alphaSpd
+    }
+    else {
+        staminaBarAlpha+=alphaSpd
+    }
+    
+    var _staminaPercent = obj_player.runTimer / obj_player.runNum
+    _staminaPercent = clamp(_staminaPercent, 0, obj_player.runNum)
+    var _staminaImage = _staminaPercent * (sprite_get_number(spr_staminaBar) - 1)
+    draw_sprite_ext(spr_staminaBar, _staminaImage, obj_player.x, obj_player.y + sprite_get_bbox_bottom(spr_shadow), 1, 1, 0, c_white, staminaBarAlpha)
+}
+
+// Draw HUD
 if global.isPlaying
 {
-    var _playerName = global.name
-    // string_digits returns only digits contained in a string
-	   var _level = Text("default_level_names") + ": " +  string_digits(room_get_name(room))
-    
-    // This would change because we are going to add enemies that arent counted on the level
-	   var _enemiesLeft = Text("default_enemies_left") + ": " + string(instance_number(obj_enemyParent))
-	
     draw_left()
-    draw_text_transformed( _LeftX, _TopY, _level, 0.5, 0.5, 0)
+    // Feather disable once GM1041
+    draw_text_scribble( _LeftX, _TopY, "[scale,0.5]" + _level)
     //draw_text_transformed( _topX, _topY, _playerName, 0.5, 0.5, 0)
     
     draw_right()
-    draw_text_transformed( _RightX, _TopY ,_enemiesLeft, 0.5, 0.5, 0)
-    
-    // Healthbar
-    if hudAlpha == 1 
-    {
-        draw_right()
-        draw_set_font(fnt_mini)
-        draw_text_transformed( _LeftX + sprite_get_width(spr_healthbar), _BottomY - sprite_get_height(spr_healthbar) - 1, string(playerHp) + "/" + string(playerMaxHp), 1, 1, 0 )
-        draw_sprite(spr_healthbar, playerHp, _LeftX, _BottomY)
-        draw_set_font(fnt_8bit)
-    }
+    // Feather disable once GM1041
+    draw_text_scribble( _RightX, _TopY ,"[scale,0.5]" +_enemiesLeft)
 }
+
+
+// Healthbar
+if hudAlpha == 1 
+{
+    draw_sprite_ext(spr_healthbar, playerHp, _LeftX, _BottomY, 1.1, 1.1, image_angle, image_blend, image_alpha)
+}
+
+

@@ -1,0 +1,1 @@
+staminaBarAlpha = clamp(staminaBarAlpha,0,1)

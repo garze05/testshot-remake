@@ -1,0 +1,172 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake:211 (message)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      The system is: Windows - 10.0.22631 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/Users/gabro/gmpm/GMRT/third_party/clang/17.0.3/x86_64/bin/clang-cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+      
+      The C compiler identification is Clang, found in:
+        C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/3.27.7/CompilerIdC/CMakeCCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:1155 (message)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:221 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        Note: including file: ./foo.h
+        
+      Found prefix "Note: including file: "
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/Users/gabro/gmpm/GMRT/third_party/clang/17.0.3/x86_64/bin/clang-cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+      
+      The CXX compiler identification is Clang, found in:
+        C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/3.27.7/CompilerIdCXX/CMakeCXXCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:1155 (message)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:221 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Detecting CXX compiler /showIncludes prefix:
+        Note: including file: ./foo.h
+        
+      Found prefix "Note: including file: "
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/CMakeScratch/TryCompile-27zd98"
+      binary: "C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/CMakeScratch/TryCompile-27zd98"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/CMakeScratch/TryCompile-27zd98'
+        
+        Run Build Command(s): C:/Users/gabro/gmpm/GMRT/third_party/ninja/1.11.1/Release/x86_64/bin/ninja.exe -v cmTC_ce524
+        [1/2] C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\clang\\17.0.3\\x86_64\\bin\\clang-cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_ce524.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_ce524.dir\\ -c -- C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\cmake\\3.27.7\\x86_64\\share\\cmake-3.27\\Modules\\CMakeCCompilerABI.c
+        [2/2] cmd.exe /C "cd . && C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\cmake\\3.27.7\\x86_64\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_ce524.dir --rc=rc --mt=CMAKE_MT-NOTFOUND --manifests  -- C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\clang\\17.0.3\\x86_64\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_ce524.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_ce524.exe /implib:cmTC_ce524.lib /pdb:cmTC_ce524.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console   && cd ."
+        FAILED: cmTC_ce524.exe 
+        cmd.exe /C "cd . && C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\cmake\\3.27.7\\x86_64\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_ce524.dir --rc=rc --mt=CMAKE_MT-NOTFOUND --manifests  -- C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\clang\\17.0.3\\x86_64\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_ce524.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_ce524.exe /implib:cmTC_ce524.lib /pdb:cmTC_ce524.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console   && cd ."
+        RC Pass 1: command "rc /fo CMakeFiles\\cmTC_ce524.dir/manifest.res CMakeFiles\\cmTC_ce524.dir/manifest.rc" failed (exit code 0) with the following output:
+        The system cannot find the file specified
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/CMakeScratch/TryCompile-qfycgl"
+      binary: "C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/CMakeScratch/TryCompile-qfycgl"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/CMakeScratch/TryCompile-qfycgl'
+        
+        Run Build Command(s): C:/Users/gabro/gmpm/GMRT/third_party/ninja/1.11.1/Release/x86_64/bin/ninja.exe -v cmTC_ecd0c
+        [1/2] C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\clang\\17.0.3\\x86_64\\bin\\clang-cl.exe  /nologo -TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_ecd0c.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_ecd0c.dir\\ -c -- C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\cmake\\3.27.7\\x86_64\\share\\cmake-3.27\\Modules\\CMakeCXXCompilerABI.cpp
+        [2/2] cmd.exe /C "cd . && C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\cmake\\3.27.7\\x86_64\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_ecd0c.dir --rc=rc --mt=CMAKE_MT-NOTFOUND --manifests  -- C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\clang\\17.0.3\\x86_64\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_ecd0c.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_ecd0c.exe /implib:cmTC_ecd0c.lib /pdb:cmTC_ecd0c.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console   && cd ."
+        FAILED: cmTC_ecd0c.exe 
+        cmd.exe /C "cd . && C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\cmake\\3.27.7\\x86_64\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_ecd0c.dir --rc=rc --mt=CMAKE_MT-NOTFOUND --manifests  -- C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\clang\\17.0.3\\x86_64\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_ecd0c.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_ecd0c.exe /implib:cmTC_ecd0c.lib /pdb:cmTC_ecd0c.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console   && cd ."
+        RC Pass 1: command "rc /fo CMakeFiles\\cmTC_ecd0c.dir/manifest.res CMakeFiles\\cmTC_ecd0c.dir/manifest.rc" failed (exit code 0) with the following output:
+        The system cannot find the file specified
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/Internal/FeatureTesting.cmake:34 (try_compile)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/Internal/FeatureTesting.cmake:83 (_record_compiler_features)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake:121 (_record_compiler_features_cxx)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeDetermineCompileFeatures.cmake:70 (cmake_record_cxx_compile_features)"
+      - "C:/Users/gabro/gmpm/GMRT/third_party/cmake/3.27.7/x86_64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake:70 (CMAKE_DETERMINE_COMPILE_FEATURES)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting CXX compile features"
+    directories:
+      source: "C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/CMakeScratch/TryCompile-fo5v3q"
+      binary: "C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/CMakeScratch/TryCompile-fo5v3q"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_FEATURE_TEST"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/CMakeScratch/TryCompile-fo5v3q'
+        
+        Run Build Command(s): C:/Users/gabro/gmpm/GMRT/third_party/ninja/1.11.1/Release/x86_64/bin/ninja.exe -v cmTC_33f57
+        [1/2] C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\clang\\17.0.3\\x86_64\\bin\\clang-cl.exe  /nologo -TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1   -std:c++14 /showIncludes /FoCMakeFiles\\cmTC_33f57.dir\\feature_tests.cxx.obj /FdCMakeFiles\\cmTC_33f57.dir\\ -c -- C:\\Users\\gabro\\GameMakerProjects\\game1-remake\\Build\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fo5v3q\\feature_tests.cxx
+        [2/2] cmd.exe /C "cd . && C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\cmake\\3.27.7\\x86_64\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_33f57.dir --rc=rc --mt=CMAKE_MT-NOTFOUND --manifests  -- C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\clang\\17.0.3\\x86_64\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_33f57.dir\\feature_tests.cxx.obj  /out:cmTC_33f57.exe /implib:cmTC_33f57.lib /pdb:cmTC_33f57.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_33f57.exe 
+        cmd.exe /C "cd . && C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\cmake\\3.27.7\\x86_64\\bin\\cmake.exe -E vs_link_exe --intdir=CMakeFiles\\cmTC_33f57.dir --rc=rc --mt=CMAKE_MT-NOTFOUND --manifests  -- C:\\Users\\gabro\\gmpm\\GMRT\\third_party\\clang\\17.0.3\\x86_64\\bin\\lld-link.exe /nologo CMakeFiles\\cmTC_33f57.dir\\feature_tests.cxx.obj  /out:cmTC_33f57.exe /implib:cmTC_33f57.lib /pdb:cmTC_33f57.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        RC Pass 1: command "rc /fo CMakeFiles\\cmTC_33f57.dir/manifest.res CMakeFiles\\cmTC_33f57.dir/manifest.rc" failed (exit code 0) with the following output:
+        The system cannot find the file specified
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...

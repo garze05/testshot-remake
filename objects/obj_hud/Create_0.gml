@@ -7,4 +7,7 @@ playerMaxHp = 0
 
 currentView = global.camera
 
-hudAlpha = 1
+alphaSpd = 0.1
+
+healthBarAlpha = 1
+staminaBarAlpha = 0

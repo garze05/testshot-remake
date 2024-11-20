@@ -22,7 +22,7 @@ if aimDir >= 180 && aimDir < 360 // If we are looking in any direction other tha
 
 // Draw debug hp
 if _showDebug {
-	draw_text(x ,y, string(hp))
+	draw_text_scribble(x ,y, string(hp))
 }
 
 // By default this draw_mask function will only work with global.showDebugInfo set to true

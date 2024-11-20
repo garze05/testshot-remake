@@ -1,17 +1,37 @@
 // Get inputs
-right = global.rightKey
-left = global.leftKey
-up = global.upKey
-down = global.downKey
-shot = global.shootKey
-run = global.runKey
-swapKey = global.swapGunKey
-interact = global.interact
+    right = global.rightKey
+    left = global.leftKey
+    up = global.upKey
+    down = global.downKey
+    shot = global.shootKey
+    runKey = global.runKey
+    swapKey = global.swapGunKey
+    interact = global.interact
 
-// Hack to make weapons 1 bullet click
-if shot && weapon.auto == false { mouse_clear(shot) } // !! This does not work on mac for some reason
+// TODO: FIX THIS, DOES NOT WORK.
+// This should make a weapon not auto without needing to make adjustments to the weapon creation struct
+    if shot && weapon.auto == false { mouse_clear(shot) } // !! This does not work on mac for some reason
 
-moveSpd = run ? runSpd : wlkSpd; // Alternate between running and walking spds
+// Player running mechanic logic
+
+
+if running{
+    moveSpd = runSpd
+}
+else {
+    moveSpd = wlkSpd
+    runTimer++
+}
+
+runTimer = clamp(runTimer, 0 , runNum )
+
+// If we can run we are going to change our movement speed
+//moveSpd = canRun && running ? runSpd : wlkSpd
+
+show_debug_message(runTimer)
+show_debug_message(canRun)
+show_debug_message("running:" + string(running))
+show_debug_message("coolDownTimer:" + string(runCooldownTimer))
 
 #region Player Movement
 	// Get direction for the moving player
@@ -45,7 +65,39 @@ moveSpd = run ? runSpd : wlkSpd; // Alternate between running and walking spds
 		// If we are getting any input on the keyboard for movement
 		if xspd != 0 or yspd != 0 {
 			state = "walk"
-		} else { state = "idle" }
+            // We need to consider that we are actually moving, not just standing with the run button held. This is why this code is here
+            if runKey == true
+            {
+                if runTimer > 0
+                {
+                    running = true
+                } 
+                else
+                {
+                    runCooldownTimer--
+                    running = false
+                    if runCooldownTimer <= 0
+                    {
+                        runCooldownTimer = runCooldown
+                        if runTimer <= 50
+                        {
+                            runTimer++
+                            running = false
+                        }
+
+                    }
+                }
+                runTimer--
+            }
+            else 
+            {
+                running = false
+            }
+		} else 
+        { 
+            state = "idle"
+            running = false 
+        }
 	
 	// Move player
 	x += xspd

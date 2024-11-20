@@ -1,23 +1,39 @@
+// Player Info
+playerName = global.name
+
 // Input
 	left = 0
 	right = 0
 	up = 0
 	down = 0
-	run = 0
+	runKey = 0
 	shot = 0
 	swapKey = 0
 	interact = 0
 
 // Movement
 	moveDir = 0 //360
-	wlkSpd = 1
-	runSpd = wlkSpd + 0.3
+	wlkSpd = 0.8
+
+    // Running (this isnt the best system, but its what i came up with for now. Would like to look a tutorial later)
+    // stamina mechanic  
+        canRun = false
+        running = false
+        runNum = 150
+        runTimer = runNum
+        runCooldown = 50
+        runCooldownTimer = runCooldown
+    runSpd = wlkSpd + 0.3
+
 	moveSpd = wlkSpd
 	xspd = 0
 	yspd = 0
 
+
+
 // Damage and Health Setup
 	get_damaged_create(3, true)
+    hurt = false
 
 // Sprite Control
 	centerYOffset = -4
@@ -52,5 +68,3 @@
 	
 	selectedWeapon = 0
 	weapon = global.PlayerWeapons[selectedWeapon]
-	
-playerName = global.name

@@ -119,8 +119,8 @@
   "maintainGms1Font":false,
   "name":"fnt_mini",
   "parent":{
-    "name":"Game1 Remake",
-    "path":"Game1 Remake.yyp",
+    "name":"Fonts",
+    "path":"folders/Fonts.yy",
   },
   "pointRounding":0,
   "ranges":[

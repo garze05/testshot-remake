@@ -10,7 +10,7 @@ global.showDebugInfo = false
 
 // Language
     enum LOCALE { EN, ES, PT, DE }
-    global.locale = LOCALE.EN
+    global.locale = LOCALE.DE
     InitTranslations()
 
 // Init default draw settings
