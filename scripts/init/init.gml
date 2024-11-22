@@ -1,3 +1,8 @@
+// Language
+    enum LOCALE { EN, ES, PT, DE }
+    global.locale = LOCALE.ES
+    InitTranslations()
+
 // MACROS
 // Colours
     #macro WHITE $f5ffe8
@@ -7,11 +12,6 @@ global.trueKey = true
 global.showDebugInfo = false
 // TODO: This would be asked once before playing, and then retrieved with a .ini file
     global.name = "Player" // For testing
-
-// Language
-    enum LOCALE { EN, ES, PT, DE }
-    global.locale = LOCALE.DE
-    InitTranslations()
 
 // Init default draw settings
 draw_set_color(WHITE)

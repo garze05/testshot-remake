@@ -16,7 +16,7 @@ if (instance_exists(obj_player))
     // Distance between the player and the mouse
     // Direction of the player's aim
     // Divided by 6, just because. Literally. Magic number of shit
-        var len = (point_distance(obj_player.x, obj_player.centerY, mouse_x, mouse_y) / 6);
+        var len = (point_distance(obj_player.x, obj_player.centerY, input_cursor_x(), input_cursor_y()) / 6);
         var _offsetDir = obj_player.aimDir;
 
     // First we center the cam to the player

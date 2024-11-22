@@ -1,3 +1,0 @@
-C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/Game1_Remake.dir
-C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/edit_cache.dir
-C:/Users/gabro/GameMakerProjects/game1-remake/Build/build/CMakeFiles/rebuild_cache.dir

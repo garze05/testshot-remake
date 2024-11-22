@@ -1,4 +1,4 @@
-// Get inputs
+#region Get inputs
     right = global.rightKey
     left = global.leftKey
     up = global.upKey
@@ -7,7 +7,7 @@
     runKey = global.runKey
     swapKey = global.swapGunKey
     interact = global.interact
-
+#endregion
 // TODO: FIX THIS, DOES NOT WORK.
 // This should make a weapon not auto without needing to make adjustments to the weapon creation struct
     if shot && weapon.auto == false { mouse_clear(shot) } // !! This does not work on mac for some reason
@@ -15,23 +15,6 @@
 // Player running mechanic logic
 
 
-if running{
-    moveSpd = runSpd
-}
-else {
-    moveSpd = wlkSpd
-    runTimer++
-}
-
-runTimer = clamp(runTimer, 0 , runNum )
-
-// If we can run we are going to change our movement speed
-//moveSpd = canRun && running ? runSpd : wlkSpd
-
-show_debug_message(runTimer)
-show_debug_message(canRun)
-show_debug_message("running:" + string(running))
-show_debug_message("coolDownTimer:" + string(runCooldownTimer))
 
 #region Player Movement
 	// Get direction for the moving player
@@ -61,43 +44,78 @@ show_debug_message("coolDownTimer:" + string(runCooldownTimer))
 		yspd = 0
 	}
 	
-	// State machines for animations
+	// State machines
 		// If we are getting any input on the keyboard for movement
 		if xspd != 0 or yspd != 0 {
-			state = "walk"
-            // We need to consider that we are actually moving, not just standing with the run button held. This is why this code is here
-            if runKey == true
-            {
-                if runTimer > 0
-                {
-                    running = true
-                } 
-                else
-                {
-                    runCooldownTimer--
-                    running = false
-                    if runCooldownTimer <= 0
-                    {
-                        runCooldownTimer = runCooldown
-                        if runTimer <= 50
-                        {
-                            runTimer++
-                            running = false
-                        }
-
-                    }
-                }
-                runTimer--
-            }
-            else 
-            {
-                running = false
-            }
+			// If we are pressing the runKey AND we arent tired yet
+			if runKey && runTimer < runDuration 
+			{ 
+				state = "running" 
+			} else { 
+				state = "walking" 
+			}
 		} else 
         { 
             state = "idle"
-            running = false 
         }
+	
+	// Running mechanic implementation
+	switch (state)
+	{
+	    case "running":
+			if runTimer < runDuration
+			{
+				moveSpd = runSpd
+			}
+			
+			runTimer++
+			recoveryTimer = 0
+		break;
+
+	    case "walking":
+			moveSpd = wlkSpd
+			
+			// This is to know if we came from running
+			if runTimer >= runDuration
+			{
+				cooldownTimer++
+				if cooldownTimer >= runCooldown
+				{
+					state = "running"
+					runTimer = runDuration/2
+					cooldownTimer = 0
+				}
+			}
+			else
+			{
+				// This controls the cooldown to recover the stamina
+				recoveryTimer++
+				if recoveryTimer >= recoveryDuration
+				{
+					runTimer = 0 // Full stamina recovery
+					recoveryTimer = 0
+				}
+			}
+		break;
+	    case "idle":
+		// We recover twice as fast
+			recoveryTimer+=2
+			if recoveryTimer >= recoveryDuration
+			{
+				runTimer = 0 // Full stamina recovery
+				recoveryTimer = 0
+			}
+	    break;
+	}
+	
+	show_debug_message("Run Timer: " + string(runTimer));
+	show_debug_message("Cooldown Timer: " + string(cooldownTimer));
+	show_debug_message("Recovery Timer: " + string(recoveryTimer));
+
+	// Clamping
+	runTimer = clamp(runTimer, 0, runDuration);
+	cooldownTimer = clamp(cooldownTimer, 0, runCooldown);
+	recoveryTimer = clamp(recoveryTimer, 0, recoveryDuration);
 	
 	// Move player
 	x += xspd
@@ -105,7 +123,10 @@ show_debug_message("coolDownTimer:" + string(runCooldownTimer))
 	
 	// Dynamic draw depth
 	depth = -bbox_bottom; // The lower, the closer to the camera, and vice versa
+
 #endregion
+
+
 
 // Take damage
 get_damaged( obj_damagePlayer, true )

@@ -29,11 +29,12 @@ if instance_exists(obj_player)
     {
         _healthInfoText = "[shake][scale,0.8][c_red]"+_healthInfoText
         _playerName = "[shake][c_red]"+_playerName
-        draw_text_scribble(obj_player.x,obj_player.centerY,"[scale,1][fa_middle][fa_center]" + _healthInfoText)
+		// Feather disable once GM1041
+        draw_text_scribble(obj_player.x,obj_player.centerY,"[fnt_8bit][scale,1][fa_middle][fa_center]" + _healthInfoText)
     }
     
-    // Player stamina bar
-    if (obj_player.runTimer >= obj_player.runNum)
+    //// Player stamina bar
+    if (playerRunTimer < 1)
     {
         staminaBarAlpha-=alphaSpd
     }
@@ -41,8 +42,8 @@ if instance_exists(obj_player)
         staminaBarAlpha+=alphaSpd
     }
     
-    var _staminaPercent = obj_player.runTimer / obj_player.runNum
-    _staminaPercent = clamp(_staminaPercent, 0, obj_player.runNum)
+    var _staminaPercent = playerRunTimer / playerMaxRunDuration
+    _staminaPercent = clamp(_staminaPercent, 0, playerMaxRunDuration)
     var _staminaImage = _staminaPercent * (sprite_get_number(spr_staminaBar) - 1)
     draw_sprite_ext(spr_staminaBar, _staminaImage, obj_player.x, obj_player.y + sprite_get_bbox_bottom(spr_shadow), 1, 1, 0, c_white, staminaBarAlpha)
 }
@@ -52,12 +53,12 @@ if global.isPlaying
 {
     draw_left()
     // Feather disable once GM1041
-    draw_text_scribble( _LeftX, _TopY, "[scale,0.5]" + _level)
+    draw_text_scribble( _LeftX, _TopY, "[fnt_antialiasing][scale,0.15]" + _level)
     //draw_text_transformed( _topX, _topY, _playerName, 0.5, 0.5, 0)
     
     draw_right()
     // Feather disable once GM1041
-    draw_text_scribble( _RightX, _TopY ,"[scale,0.5]" +_enemiesLeft)
+    draw_text_scribble( _RightX, _TopY ,"[fnt_antialiasing][scale,0.15]" +_enemiesLeft)
 }
 
 

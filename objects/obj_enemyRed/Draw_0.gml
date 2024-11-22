@@ -6,3 +6,5 @@ draw_sprite_ext( sprite_index, image_index, x, y, image_xscale * face, image_ysc
 var _healthPercent = hp / maxHp
 var _hpImage = _healthPercent * (sprite_get_number(spr_enemyHealthBar) - 1)
 draw_sprite(spr_enemyHealthBar, _hpImage, x, y-sprite_height - 2)
+
+draw_shadow()

@@ -12,24 +12,30 @@ playerName = global.name
 	interact = 0
 
 // Movement
-	moveDir = 0 //360
-	wlkSpd = 0.8
+    moveDir = 0 //360
+    wlkSpd = 0.7
+    runSpd = wlkSpd*2
 
-    // Running (this isnt the best system, but its what i came up with for now. Would like to look a tutorial later)
-    // stamina mechanic  
-        canRun = false
-        running = false
-        runNum = 150
-        runTimer = runNum
-        runCooldown = 50
-        runCooldownTimer = runCooldown
-    runSpd = wlkSpd + 0.3
-
+// Running mechanic
+	// We want to be able to run for a limited time only
+	runDuration = 180
+	runCooldown = 180
+	runTimer = 0
+	cooldownTimer = 0
+	
+	// Stamina recovery
+	recoveryTimer = 0
+	recoveryDuration = runCooldown
+	
+	// Run boosts
+	runBoostCount = 3
+	runBoosts = 0
+	
+    // Default moveSpd
 	moveSpd = wlkSpd
+
 	xspd = 0
 	yspd = 0
-
-
 
 // Damage and Health Setup
 	get_damaged_create(3, true)
@@ -63,8 +69,10 @@ playerName = global.name
 	isShooting = false
 	
 	// Add weapons to player inventory
+	array_push( global.PlayerWeapons, global.Weapons.revolver )
 	array_push( global.PlayerWeapons, global.Weapons.normalBow ) // "array_push" Add value to the end of an array easily (kind of like stacks). You can add n amount of things after each comma
 	array_push( global.PlayerWeapons, global.Weapons.fastBow )
+
 	
 	selectedWeapon = 0
 	weapon = global.PlayerWeapons[selectedWeapon]

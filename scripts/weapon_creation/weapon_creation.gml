@@ -19,6 +19,13 @@ global.PlayerWeapons = array_create(0)
 
 // Weapons list
 global.Weapons = {
+	revolver : new create_weapon(
+		spr_gun,
+		sprite_get_bbox_right( spr_gun ) - sprite_get_xoffset( spr_gun ), 
+		obj_bullet,
+		20,
+		true
+	),
 	normalBow : new create_weapon(
 		spr_bowNormal, 
 		sprite_get_bbox_right( spr_bowNormal ) - sprite_get_xoffset( spr_bowNormal ), 
