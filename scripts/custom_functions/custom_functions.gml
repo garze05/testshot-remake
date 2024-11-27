@@ -47,7 +47,7 @@ function get_damaged_cleanup()
 }
 
 // Step Damage event
-/// @desc Calculates the damage that this object should receive how it handles visuals
+/// @desc Calculates the damage that this object should receive and how it handles visuals
 /// @param {Asset.GMObject} _damageObj What object does damage to this object. Normally a parent
 /// @param {bool} [_iFrames]=false Whatever this object uses Invencibility Frames when damage is received
 function get_damaged( _damageObj, _iFrames = false) 
@@ -188,20 +188,10 @@ function draw_shadow()
 	
 }
 
-function draw_center()
+function next_room()
 {
-    draw_set_halign(fa_center)
-    draw_set_valign(fa_middle)
-}
-
-function draw_left()
-{
-    draw_set_halign(fa_left)
-    draw_set_valign(fa_middle)
-}
-
-function draw_right()
-{
-    draw_set_halign(fa_right)
-    draw_set_valign(fa_middle)
+	if room_exists(room_next(room))
+	{
+		room_goto_next()
+	}
 }

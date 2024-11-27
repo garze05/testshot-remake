@@ -40,16 +40,16 @@ else if global.gameOver
 
 // Code to open the doors to next level
 // For now we just advance to next room when all enemies die
-	if global.isPlaying
-	{
-		if !instance_exists(obj_enemyParent)
-		{
-			if _targetRoom > 0
-			{
-				TransitionStart( _targetRoom, transitionOut, transitionIn )
-			}
-		}
-	}
+	//if global.isPlaying
+	//{
+	//	if !instance_exists(obj_enemyParent)
+	//	{
+	//		if _targetRoom > 0
+	//		{
+	//			TransitionStart( _targetRoom, transitionOut, transitionIn )
+	//		}
+	//	}
+	//}
 
 // DebugTools
 if keyboard_check_pressed( vk_tab )
@@ -63,9 +63,9 @@ if global.showDebugInfo
 {
 	if keyboard_check_pressed( vk_enter )
 	{
-		if instance_exists(obj_enemyParent)
+		if _targetRoom > 0
 		{
-			instance_destroy(obj_enemyParent)
+			TransitionStart( _targetRoom, transitionOut, transitionIn )
 		}
 	}
 }

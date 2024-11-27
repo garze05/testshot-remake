@@ -12,3 +12,5 @@ face = 1
 
 // state machine
 state = 0
+// To have the write effect
+t = 0

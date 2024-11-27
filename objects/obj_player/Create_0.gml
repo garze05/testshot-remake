@@ -18,8 +18,8 @@ playerName = global.name
 
 // Running mechanic
 	// We want to be able to run for a limited time only
-	runDuration = 180
-	runCooldown = 180
+	runDuration = 6*60
+	runCooldown = 4*60
 	runTimer = 0
 	cooldownTimer = 0
 	

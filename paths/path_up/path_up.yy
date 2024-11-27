@@ -1,9 +1,9 @@
 {
   "$GMPath":"",
-  "%Name":"path_updown",
+  "%Name":"path_up",
   "closed":false,
   "kind":0,
-  "name":"path_updown",
+  "name":"path_up",
   "parent":{
     "name":"Game1 Remake",
     "path":"Game1 Remake.yyp",

@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Tiles",
-    "path":"folders/Tiles.yy",
+    "name":"legacy",
+    "path":"folders/Tiles/legacy.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

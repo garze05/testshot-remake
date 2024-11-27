@@ -12,10 +12,6 @@
 // This should make a weapon not auto without needing to make adjustments to the weapon creation struct
     if shot && weapon.auto == false { mouse_clear(shot) } // !! This does not work on mac for some reason
 
-// Player running mechanic logic
-
-
-
 #region Player Movement
 	// Get direction for the moving player
 	var _xaxis =  right - left
@@ -44,7 +40,7 @@
 		yspd = 0
 	}
 	
-	// State machines
+	// State machines and running implementation
 		// If we are getting any input on the keyboard for movement
 		if xspd != 0 or yspd != 0 {
 			// If we are pressing the runKey AND we arent tired yet
@@ -59,7 +55,7 @@
             state = "idle"
         }
 	
-	// Running mechanic implementation
+#region "Lethal Company" style running mechanic implementation
 	switch (state)
 	{
 	    case "running":
@@ -116,7 +112,8 @@
 	runTimer = clamp(runTimer, 0, runDuration);
 	cooldownTimer = clamp(cooldownTimer, 0, runCooldown);
 	recoveryTimer = clamp(recoveryTimer, 0, recoveryDuration);
-	
+#endregion
+
 	// Move player
 	x += xspd
 	y += yspd
