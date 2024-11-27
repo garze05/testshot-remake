@@ -14,8 +14,8 @@
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"Tiles",
-    "path":"folders/Tiles.yy",
+    "name":"legacy",
+    "path":"folders/Tiles/legacy.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",

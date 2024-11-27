@@ -1,6 +1,3 @@
-global.trueKey = true
-global.showDebugInfo = false
-
 // Draw weapon player
 function draw_weapon()
 {
@@ -18,9 +15,10 @@ function draw_weapon()
 	draw_sprite_ext( weapon.sprite, frame, x + _xOffset, centerY + _yOffset, 1, _weaponYscale, aimDir, c_white, 1 )
 }
 
-
 // Damage calculation
-// Create event
+/// @desc Damage calculation create event
+/// @param {real} [_hp]=1 The initial hp of this object
+/// @param {bool} [_iFrames]=false Whatever this object uses invencibility frames for a classic damage effect
 function get_damaged_create( _hp = 1, _iFrames = false)
 {
 	maxHp = _hp
@@ -38,7 +36,8 @@ function get_damaged_create( _hp = 1, _iFrames = false)
 	}
 }
 	
-// Cleanup event
+// CleanUp Damage Event
+/// @desc Cleans the ds list of the damage that this object has received
 function get_damaged_cleanup()
 {
 	// We don't need this if we're using Invincibility Frames "iFrames == true"
@@ -46,8 +45,11 @@ function get_damaged_cleanup()
 	// Remove the damage list to free up memory
 	ds_list_destroy(damageList)
 }
-	
-// Step event
+
+// Step Damage event
+/// @desc Calculates the damage that this object should receive and how it handles visuals
+/// @param {Asset.GMObject} _damageObj What object does damage to this object. Normally a parent
+/// @param {bool} [_iFrames]=false Whatever this object uses Invencibility Frames when damage is received
 function get_damaged( _damageObj, _iFrames = false) 
 {
 		
@@ -62,22 +64,34 @@ function get_damaged( _damageObj, _iFrames = false)
 			} else {
 				image_alpha = 1
 			}
-			obj_hud.hudAlpha = image_alpha
+            
+            // This code is to make the hud have the same effect, but only for my player and to update if my player is hurted
+            if _damageObj == obj_damagePlayer
+            {
+                if instance_exists(obj_player) && instance_exists(obj_hud)
+                {
+                    obj_hud.hudAlpha = image_alpha 
+                    obj_player.hurt = true
+                }
+            }
 		}
 		image_blend = c_red
 		
 		// clamp hp
 		hp = clamp(hp, 0, maxHp)
-		
-		exit // I don't execute any of the below until iFrames is false and iFrameTimer has finished
+		exit // I don't execute any of the below until iFrameTimer has finished
 	}
+    
 	// Ensure that the player's state returns to normal
-	
 	if _iFrames == true // This would need to change, so I can affect the player's image_blend or/and alpha (for black rooms for e.g)
 	{
 		image_blend = c_white 
 		image_alpha = 1
 		obj_hud.hudAlpha = 1
+        if instance_exists(obj_player)
+        {
+            obj_player.hurt = false
+        }
 	}
 		
 	// Take damage // Plan things before, do things // 1000 and one times easier as a Game Designer
@@ -161,13 +175,23 @@ function get_damaged( _damageObj, _iFrames = false)
 	hp = clamp(hp, 0, maxHp)
 }
 
+/// @desc Draw the hitbox or mask of any object this script is placed in a Draw event when Show Debug Info is enabled
 function draw_mask()
 {
 	if global.showDebugInfo { draw_rectangle_color(bbox_left,bbox_top,bbox_right-1,bbox_bottom-1,c_red,c_red,c_red,c_red,true) }
 }
 
+/// @desc Draws a shadow bellow any object, if its sprite has the origin to the bottom middle. Uses @spr_shadow
 function draw_shadow()
 {
 	draw_sprite_ext(spr_shadow, 0, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha)
 	
+}
+
+function next_room()
+{
+	if room_exists(room_next(room))
+	{
+		room_goto_next()
+	}
 }

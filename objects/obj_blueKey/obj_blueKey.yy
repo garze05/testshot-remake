@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Collectibles",
-    "path":"folders/Objects/Collectibles.yy",
+    "path":"folders/Collectibles.yy",
   },
   "parentObjectId":{
     "name":"obj_collectParent",

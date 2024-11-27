@@ -1,20 +1,18 @@
-// Get inputs
-right = global.rightKey
-left = global.leftKey
-up = global.upKey
-down = global.downKey
-shot = global.shootKey
-run = global.runKey
-swapKey = global.swapGunKey
-interact = global.interact
+#region Get inputs
+    right = global.rightKey
+    left = global.leftKey
+    up = global.upKey
+    down = global.downKey
+    shot = global.shootKey
+    runKey = global.runKey
+    swapKey = global.swapGunKey
+    interact = global.interact
+#endregion
+// TODO: FIX THIS, DOES NOT WORK.
+// This should make a weapon not auto without needing to make adjustments to the weapon creation struct
+    if shot && weapon.auto == false { mouse_clear(shot) } // !! This does not work on mac for some reason
 
-// Hack to make weapons 1 bullet click
-if shot && weapon.auto == false { mouse_clear(shot) } // !! This does not work on mac for some reason
-
-moveSpd = run ? runSpd : wlkSpd; // Alternate between running and walking spds
-
-// Player Movement
-#region
+#region Player Movement
 	// Get direction for the moving player
 	var _xaxis =  right - left
 	var _yaxis = down - up
@@ -33,32 +31,104 @@ moveSpd = run ? runSpd : wlkSpd; // Alternate between running and walking spds
 	yspd = lengthdir_y(_spd, moveDir)
 	
 	// place_meeting is a prediction, if I added my x/y velocity right now, am I colliding with obj_wall?
-	if place_meeting(x + xspd, y, obj_wall){
+	if place_meeting(x + xspd, y, obj_wall)
+    {
 		xspd = 0
 	}
-	if place_meeting(x, y + yspd, obj_wall) {
+	if place_meeting(x, y + yspd, obj_wall) 
+    {
 		yspd = 0
 	}
 	
-	// State machines for animations
+	// State machines and running implementation
 		// If we are getting any input on the keyboard for movement
 		if xspd != 0 or yspd != 0 {
-			state = "walk"
-		} else { state = "idle" }
+			// If we are pressing the runKey AND we arent tired yet
+			if runKey && runTimer < runDuration 
+			{ 
+				state = "running" 
+			} else { 
+				state = "walking" 
+			}
+		} else 
+        { 
+            state = "idle"
+        }
 	
+#region "Lethal Company" style running mechanic implementation
+	switch (state)
+	{
+	    case "running":
+			if runTimer < runDuration
+			{
+				moveSpd = runSpd
+			}
+			
+			runTimer++
+			recoveryTimer = 0
+		break;
+
+	    case "walking":
+			moveSpd = wlkSpd
+			
+			// This is to know if we came from running
+			if runTimer >= runDuration
+			{
+				cooldownTimer++
+				if cooldownTimer >= runCooldown
+				{
+					state = "running"
+					runTimer = runDuration/2
+					cooldownTimer = 0
+				}
+			}
+			else
+			{
+				// This controls the cooldown to recover the stamina
+				recoveryTimer++
+				if recoveryTimer >= recoveryDuration
+				{
+					runTimer = 0 // Full stamina recovery
+					recoveryTimer = 0
+				}
+			}
+		break;
+	    case "idle":
+		// We recover twice as fast
+			recoveryTimer+=2
+			if recoveryTimer >= recoveryDuration
+			{
+				runTimer = 0 // Full stamina recovery
+				recoveryTimer = 0
+			}
+	    break;
+	}
+	
+	show_debug_message("Run Timer: " + string(runTimer));
+	show_debug_message("Cooldown Timer: " + string(cooldownTimer));
+	show_debug_message("Recovery Timer: " + string(recoveryTimer));
+
+	// Clamping
+	runTimer = clamp(runTimer, 0, runDuration);
+	cooldownTimer = clamp(cooldownTimer, 0, runCooldown);
+	recoveryTimer = clamp(recoveryTimer, 0, recoveryDuration);
+#endregion
+
 	// Move player
 	x += xspd
 	y += yspd
 	
 	// Dynamic draw depth
 	depth = -bbox_bottom; // The lower, the closer to the camera, and vice versa
+
 #endregion
+
+
 
 // Take damage
 get_damaged( obj_damagePlayer, true )
 
-// Sprite Control
-#region	
+#region	Sprite Control
 	// Player Aiming
 		centerY = y + centerYOffset
 		//aimDir = point_direction(x, centerY, mouse_x, mouse_y)
@@ -91,8 +161,7 @@ get_damaged( obj_damagePlayer, true )
 	sprite_index = _spriteToUse[face]
 #endregion
 
-// Weapon Swapping
-#region
+#region Weapon Swapping
 var _playerWeapons = global.PlayerWeapons // We make a local variable out of the global one because it is more efficient for GameMaker to work with local variables
 	// Cycle through weapons
 	if swapKey
@@ -106,8 +175,7 @@ var _playerWeapons = global.PlayerWeapons // We make a local variable out of the
 	}
 #endregion
 
-// Shooting Weapon
-#region
+#region Shooting Weapon
 	// If we are in mid-transition between rooms we cannot shoot
 	// This will probably be changed, is a little annoying
 	if !global.midTransition

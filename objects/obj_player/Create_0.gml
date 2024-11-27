@@ -1,23 +1,45 @@
+// Player Info
+playerName = global.name
+
 // Input
 	left = 0
 	right = 0
 	up = 0
 	down = 0
-	run = 0
+	runKey = 0
 	shot = 0
 	swapKey = 0
 	interact = 0
 
 // Movement
-	moveDir = 0 //360
-	wlkSpd = 1
-	runSpd = wlkSpd + 0.3
+    moveDir = 0 //360
+    wlkSpd = 0.7
+    runSpd = wlkSpd*2
+
+// Running mechanic
+	// We want to be able to run for a limited time only
+	runDuration = 6*60
+	runCooldown = 4*60
+	runTimer = 0
+	cooldownTimer = 0
+	
+	// Stamina recovery
+	recoveryTimer = 0
+	recoveryDuration = runCooldown
+	
+	// Run boosts
+	runBoostCount = 3
+	runBoosts = 0
+	
+    // Default moveSpd
 	moveSpd = wlkSpd
+
 	xspd = 0
 	yspd = 0
 
 // Damage and Health Setup
 	get_damaged_create(3, true)
+    hurt = false
 
 // Sprite Control
 	centerYOffset = -4
@@ -47,12 +69,10 @@
 	isShooting = false
 	
 	// Add weapons to player inventory
+	array_push( global.PlayerWeapons, global.Weapons.revolver )
 	array_push( global.PlayerWeapons, global.Weapons.normalBow ) // "array_push" Add value to the end of an array easily (kind of like stacks). You can add n amount of things after each comma
 	array_push( global.PlayerWeapons, global.Weapons.fastBow )
+
 	
 	selectedWeapon = 0
 	weapon = global.PlayerWeapons[selectedWeapon]
-	
-// TEMPORAL
-global.name = "Player"
-	
