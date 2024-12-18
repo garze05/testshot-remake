@@ -182,9 +182,9 @@ function draw_mask()
 }
 
 /// @desc Draws a shadow bellow any object, if its sprite has the origin to the bottom middle. Uses @spr_shadow
-function draw_shadow()
+function draw_shadow(_y=y)
 {
-	draw_sprite_ext(spr_shadow, 0, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha)
+	draw_sprite_ext(spr_shadow, 0, x, _y, image_xscale, image_yscale, image_angle, image_blend, image_alpha)
 	
 }
 

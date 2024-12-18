@@ -1,2 +1,2 @@
 event_inherited()
-objCollected = obj_blueBox
+activatedObj = obj_blueBox

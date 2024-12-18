@@ -3,17 +3,18 @@
   "%Name":"obj_blueKey",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_blueKey",
   "overriddenProperties":[],
   "parent":{
-    "name":"Collectibles",
-    "path":"folders/Collectibles.yy",
+    "name":"Item Pickups",
+    "path":"folders/Item Pickups.yy",
   },
   "parentObjectId":{
-    "name":"obj_collectParent",
-    "path":"objects/obj_collectParent/obj_collectParent.yy",
+    "name":"obj_itemParent",
+    "path":"objects/obj_itemParent/obj_itemParent.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

@@ -12,8 +12,8 @@
     "path":"folders/Walls/Doors.yy",
   },
   "parentObjectId":{
-    "name":"obj_doorParent",
-    "path":"objects/obj_doorParent/obj_doorParent.yy",
+    "name":"obj_doorUp",
+    "path":"objects/obj_doorUp/obj_doorUp.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

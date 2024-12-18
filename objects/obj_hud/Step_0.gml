@@ -10,4 +10,4 @@ if instance_exists(obj_player)
 	playerHp = 0
 }
 
-show_debug_message(global.enemyRoomTotal)
+//show_debug_message(global.enemyRoomTotal)

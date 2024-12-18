@@ -95,6 +95,7 @@
 		break;
 	    case "idle":
 		// We recover twice as fast
+			moveSpd = wlkSpd
 			recoveryTimer+=2
 			if recoveryTimer >= recoveryDuration
 			{
@@ -104,9 +105,9 @@
 	    break;
 	}
 	
-	show_debug_message("Run Timer: " + string(runTimer));
-	show_debug_message("Cooldown Timer: " + string(cooldownTimer));
-	show_debug_message("Recovery Timer: " + string(recoveryTimer));
+	//show_debug_message("Run Timer: " + string(runTimer));
+	//show_debug_message("Cooldown Timer: " + string(cooldownTimer));
+	//show_debug_message("Recovery Timer: " + string(recoveryTimer));
 
 	// Clamping
 	runTimer = clamp(runTimer, 0, runDuration);
